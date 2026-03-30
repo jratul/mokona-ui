@@ -8,18 +8,20 @@ export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   lines?: number;
 }
 
+const baseClass =
+  "animate-pulse bg-[var(--color-muted)] overflow-hidden relative will-change-transform" +
+  " before:absolute before:inset-0" +
+  " before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent" +
+  " before:animate-[shimmer_1.5s_infinite]";
+
 const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
   ({ className, variant = "rectangular", width, height, lines = 1, style, ...props }, ref) => {
-    const baseClass = cn(
-      "animate-pulse bg-[var(--color-muted)] overflow-hidden relative",
-      "before:absolute before:inset-0",
-      "before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent",
-      "before:animate-[shimmer_1.5s_infinite]",
-      variant === "circular" && "rounded-full",
-      variant === "text" && "rounded-md",
-      variant === "rectangular" && "rounded-xl",
-      className
-    );
+    const variantClass =
+      variant === "circular" ? "rounded-full"
+      : variant === "text" ? "rounded-md"
+      : "rounded-xl";
+
+    const computedClass = cn(baseClass, variantClass, className);
 
     if (variant === "text" && lines > 1) {
       return (
@@ -27,7 +29,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           {Array.from({ length: lines }).map((_, i) => (
             <div
               key={i}
-              className={baseClass}
+              className={computedClass}
               style={{
                 width: i === lines - 1 ? "70%" : "100%",
                 height: height ?? 16,
@@ -41,7 +43,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
     return (
       <div
         ref={ref}
-        className={baseClass}
+        className={computedClass}
         style={{ width, height: height ?? (variant === "text" ? 16 : undefined), ...style }}
         aria-hidden="true"
         {...props}

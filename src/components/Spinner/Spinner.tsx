@@ -1,5 +1,5 @@
 import * as React from "react";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "../../utils/motion";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 
@@ -30,26 +30,28 @@ export type SpinnerProps = VariantProps<typeof spinnerVariants> & {
 
 function Spinner({ className, size, color, label = "로딩 중" }: SpinnerProps) {
   return (
-    <motion.svg
-      className={cn(spinnerVariants({ size, color }), className)}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-label={label}
-      role="status"
-      animate={{ rotate: 360 }}
-      transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-    >
-      <circle
-        cx="12"
-        cy="12"
-        r="9"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeDasharray="40 16"
-        opacity="0.9"
-      />
-    </motion.svg>
+    <LazyMotion features={domAnimation}>
+      <m.svg
+        className={cn(spinnerVariants({ size, color }), className)}
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-label={label}
+        role="status"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeDasharray="40 16"
+          opacity="0.9"
+        />
+      </m.svg>
+    </LazyMotion>
   );
 }
 Spinner.displayName = "Spinner";

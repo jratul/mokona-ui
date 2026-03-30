@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import * as Label from "@radix-ui/react-label";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "../../utils/motion";
 import { cn } from "../../utils/cn";
 
 export interface CheckboxProps
@@ -13,7 +13,8 @@ const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
 >(({ className, label, id, ...props }, ref) => {
-  const checkboxId = id ?? React.useId();
+  const generatedId = React.useId();
+  const checkboxId = id ?? generatedId;
 
   return (
     <div className="flex items-center gap-2.5">
@@ -33,23 +34,25 @@ const Checkbox = React.forwardRef<
         {...props}
       >
         <CheckboxPrimitive.Indicator className="flex items-center justify-center">
-          <motion.svg
-            width="11"
-            height="8"
-            viewBox="0 0 11 8"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-          >
-            <motion.path
-              d="M1 3.5L4 6.5L10 1"
-              stroke="white"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </motion.svg>
+          <LazyMotion features={domAnimation}>
+            <m.svg
+              width="11"
+              height="8"
+              viewBox="0 0 11 8"
+              fill="none"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
+              <m.path
+                d="M1 3.5L4 6.5L10 1"
+                stroke="white"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </m.svg>
+          </LazyMotion>
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
       {label && (

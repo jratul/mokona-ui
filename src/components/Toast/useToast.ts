@@ -8,22 +8,35 @@ interface ToastState extends ToastInput {
   open: boolean;
 }
 
-let listeners: Array<(toasts: ToastState[]) => void> = [];
 let toasts: ToastState[] = [];
+const subscribers = new Set<() => void>();
+
+function getSnapshot() {
+  return toasts;
+}
+
+function subscribe(callback: () => void) {
+  subscribers.add(callback);
+  return () => subscribers.delete(callback);
+}
+
+function notify() {
+  subscribers.forEach((cb) => cb());
+}
 
 function dispatch(toast: ToastState) {
   toasts = [...toasts, toast];
-  listeners.forEach((l) => l(toasts));
+  notify();
 }
 
 function dismiss(id: string) {
   toasts = toasts.map((t) => (t.id === id ? { ...t, open: false } : t));
-  listeners.forEach((l) => l(toasts));
+  notify();
 }
 
 function remove(id: string) {
   toasts = toasts.filter((t) => t.id !== id);
-  listeners.forEach((l) => l(toasts));
+  notify();
 }
 
 export function toast(input: ToastInput) {
@@ -42,18 +55,6 @@ toast.warning = (children: React.ReactNode, opts?: Partial<ToastInput>) =>
   toast({ ...opts, children, variant: "warning" });
 
 export function useToast() {
-  const [state, setState] = React.useState<ToastState[]>(toasts);
-
-  React.useEffect(() => {
-    listeners.push(setState);
-    return () => {
-      listeners = listeners.filter((l) => l !== setState);
-    };
-  }, []);
-
-  return {
-    toasts: state,
-    dismiss,
-    remove,
-  };
+  const state = React.useSyncExternalStore(subscribe, getSnapshot);
+  return { toasts: state, dismiss, remove };
 }

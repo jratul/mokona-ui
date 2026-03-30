@@ -1,5 +1,5 @@
 import * as React from "react";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "../../utils/motion";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 
@@ -34,31 +34,26 @@ export interface CardProps
     VariantProps<typeof cardVariants> {}
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, padding, interactive, onClick, children, ...props }, ref) => {
-    if (interactive || onClick) {
-      return (
-        <motion.div
+  ({ className, variant, padding, interactive, onClick, children, style, id, "aria-label": ariaLabel }, ref) => {
+    const isInteractive = interactive || !!onClick;
+
+    return (
+      <LazyMotion features={domAnimation}>
+        <m.div
           ref={ref}
-          className={cn(cardVariants({ variant, padding, interactive: true }), className)}
-          whileTap={{ scale: 0.98 }}
-          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          id={id}
+          aria-label={ariaLabel}
+          style={style}
+          className={cn(cardVariants({ variant, padding, interactive: isInteractive || undefined }), className)}
+          whileTap={isInteractive ? { scale: 0.98 } : undefined}
+          transition={isInteractive ? { type: "spring", stiffness: 400, damping: 20 } : undefined}
           onClick={onClick as React.MouseEventHandler<HTMLDivElement>}
           role={onClick ? "button" : undefined}
           tabIndex={onClick ? 0 : undefined}
         >
           {children}
-        </motion.div>
-      );
-    }
-
-    return (
-      <div
-        ref={ref}
-        className={cn(cardVariants({ variant, padding, interactive }), className)}
-        {...props}
-      >
-        {children}
-      </div>
+        </m.div>
+      </LazyMotion>
     );
   }
 );

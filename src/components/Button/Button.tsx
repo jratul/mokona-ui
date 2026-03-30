@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "../../utils/motion";
 import { cn } from "../../utils/cn";
 
 const buttonVariants = cva(
@@ -79,28 +79,30 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
 
     return (
-      <motion.div
-        whileTap={{ scale: disabled || loading ? 1 : 0.96 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        style={{ display: "inline-flex", width: fullWidth ? "100%" : undefined }}
-      >
-        <Comp
-          ref={ref}
-          className={cn(buttonVariants({ variant, size, fullWidth, className }))}
-          disabled={disabled || loading}
-          aria-disabled={disabled || loading}
-          {...props}
+      <LazyMotion features={domAnimation}>
+        <m.div
+          whileTap={{ scale: disabled || loading ? 1 : 0.96 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          style={{ display: "inline-flex", width: fullWidth ? "100%" : undefined }}
         >
-          {loading ? (
-            <>
-              <Spinner size={size === "sm" ? 14 : 16} />
-              {children}
-            </>
-          ) : (
-            children
-          )}
-        </Comp>
-      </motion.div>
+          <Comp
+            ref={ref}
+            className={cn(buttonVariants({ variant, size, fullWidth, className }))}
+            disabled={disabled || loading}
+            aria-disabled={disabled || loading}
+            {...props}
+          >
+            {loading ? (
+              <>
+                <Spinner size={size === "sm" ? 14 : 16} />
+                {children}
+              </>
+            ) : (
+              children
+            )}
+          </Comp>
+        </m.div>
+      </LazyMotion>
     );
   }
 );
@@ -108,7 +110,7 @@ Button.displayName = "Button";
 
 function Spinner({ size = 16 }: { size?: number }) {
   return (
-    <motion.svg
+    <m.svg
       width={size}
       height={size}
       viewBox="0 0 16 16"
@@ -127,7 +129,7 @@ function Spinner({ size = 16 }: { size?: number }) {
         strokeDasharray="25 13"
         opacity="0.8"
       />
-    </motion.svg>
+    </m.svg>
   );
 }
 

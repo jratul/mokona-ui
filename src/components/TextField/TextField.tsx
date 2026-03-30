@@ -11,7 +11,8 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
 
 const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   ({ className, label, helperText, errorMessage, isError, id, ...props }, ref) => {
-    const inputId = id ?? React.useId();
+    const generatedId = React.useId();
+    const inputId = id ?? generatedId;
     const hasError = isError || !!errorMessage;
 
     return (

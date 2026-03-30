@@ -15,6 +15,71 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./button": {
+      "types": "./dist/button.d.ts",
+      "import": "./dist/button.js",
+      "require": "./dist/button.cjs"
+    },
+    "./text": {
+      "types": "./dist/text.d.ts",
+      "import": "./dist/text.js",
+      "require": "./dist/text.cjs"
+    },
+    "./divider": {
+      "types": "./dist/divider.d.ts",
+      "import": "./dist/divider.js",
+      "require": "./dist/divider.cjs"
+    },
+    "./textfield": {
+      "types": "./dist/textfield.d.ts",
+      "import": "./dist/textfield.js",
+      "require": "./dist/textfield.cjs"
+    },
+    "./checkbox": {
+      "types": "./dist/checkbox.d.ts",
+      "import": "./dist/checkbox.js",
+      "require": "./dist/checkbox.cjs"
+    },
+    "./toggle": {
+      "types": "./dist/toggle.d.ts",
+      "import": "./dist/toggle.js",
+      "require": "./dist/toggle.cjs"
+    },
+    "./toast": {
+      "types": "./dist/toast.d.ts",
+      "import": "./dist/toast.js",
+      "require": "./dist/toast.cjs"
+    },
+    "./bottom-sheet": {
+      "types": "./dist/bottom-sheet.d.ts",
+      "import": "./dist/bottom-sheet.js",
+      "require": "./dist/bottom-sheet.cjs"
+    },
+    "./badge": {
+      "types": "./dist/badge.d.ts",
+      "import": "./dist/badge.js",
+      "require": "./dist/badge.cjs"
+    },
+    "./chip": {
+      "types": "./dist/chip.d.ts",
+      "import": "./dist/chip.js",
+      "require": "./dist/chip.cjs"
+    },
+    "./card": {
+      "types": "./dist/card.d.ts",
+      "import": "./dist/card.js",
+      "require": "./dist/card.cjs"
+    },
+    "./spinner": {
+      "types": "./dist/spinner.d.ts",
+      "import": "./dist/spinner.js",
+      "require": "./dist/spinner.cjs"
+    },
+    "./skeleton": {
+      "types": "./dist/skeleton.d.ts",
+      "import": "./dist/skeleton.js",
+      "require": "./dist/skeleton.cjs"
+    },
     "./styles.css": "./dist/styles.css"
   },
   "files": [
