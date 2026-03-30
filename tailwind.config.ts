@@ -48,6 +48,10 @@ const config: Config = {
         caption1: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
       },
       keyframes: {
+        shimmer: {
+          from: { transform: "translateX(-100%)" },
+          to: { transform: "translateX(100%)" },
+        },
         "toast-in": {
           from: { opacity: "0", transform: "translateY(8px) scale(0.96)" },
           to: { opacity: "1", transform: "translateY(0) scale(1)" },
