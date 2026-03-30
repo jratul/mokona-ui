@@ -15,6 +15,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./amount": {
+      "types": "./dist/amount.d.ts",
+      "import": "./dist/amount.js",
+      "require": "./dist/amount.cjs"
+    },
     "./button": {
       "types": "./dist/button.d.ts",
       "import": "./dist/button.js",

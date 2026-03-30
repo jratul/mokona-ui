@@ -3,6 +3,7 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   entry: {
     index: "src/index.ts",
+    amount: "src/components/Amount/index.ts",
     button: "src/components/Button/index.ts",
     text: "src/components/Text/index.ts",
     divider: "src/components/Divider/index.ts",

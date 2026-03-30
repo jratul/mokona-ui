@@ -1,5 +1,6 @@
 // Foundation
 export { Button, buttonVariants, type ButtonProps } from "./components/Button";
+export { Amount, formatAmount, type AmountProps } from "./components/Amount";
 export { Text, textVariants, type TextProps } from "./components/Text";
 export { Divider, type DividerProps } from "./components/Divider";
 
