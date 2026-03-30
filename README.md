@@ -1,6 +1,6 @@
 # mokona-ui
 
-토스 스타일의 React UI 컴포넌트 라이브러리.
+React UI 컴포넌트 라이브러리.
 
 풍부한 애니메이션 반응, CSS variable 기반 다크모드, React 17~19 지원을 목표로 설계했습니다.
 
