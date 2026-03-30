@@ -39,9 +39,10 @@ function remove(id: string) {
   notify();
 }
 
-export function toast(input: ToastInput) {
-  const id = input.id ?? Math.random().toString(36).slice(2);
-  dispatch({ ...input, id, open: true });
+export function toast(input: ToastInput | string) {
+  const normalized: ToastInput = typeof input === "string" ? { children: input } : input;
+  const id = normalized.id ?? Math.random().toString(36).slice(2);
+  dispatch({ ...normalized, id, open: true });
   return { id, dismiss: () => dismiss(id) };
 }
 

@@ -78,6 +78,14 @@ const config: Config = {
           from: { opacity: "1" },
           to: { opacity: "0" },
         },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
       animation: {
         "toast-in": "toast-in 0.2s cubic-bezier(0.22, 1, 0.36, 1)",
@@ -86,6 +94,8 @@ const config: Config = {
         "slide-down": "slide-down 0.2s ease-in",
         "fade-in": "fade-in 0.2s ease-out",
         "fade-out": "fade-out 0.15s ease-in",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
