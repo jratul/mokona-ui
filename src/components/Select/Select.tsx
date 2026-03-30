@@ -83,7 +83,7 @@ const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
               sideOffset={6}
               className={cn(
                 "relative z-50 min-w-[8rem] w-[var(--radix-select-trigger-width)] overflow-hidden",
-                "rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-lg",
+                "rounded-xl border border-[var(--color-border)] bg-[var(--color-background)] shadow-lg",
                 "data-[state=open]:animate-in data-[state=closed]:animate-out",
                 "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
                 "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
