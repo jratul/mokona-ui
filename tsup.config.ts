@@ -37,6 +37,8 @@ export default defineConfig({
     "otp-input": "src/components/OTPInput/index.ts",
     popover: "src/components/Popover/index.ts",
     "dropdown-menu": "src/components/DropdownMenu/index.ts",
+    form: "src/components/Form/index.ts",
+    icon: "src/components/Icon/index.ts",
   },
   format: ["cjs", "esm"],
   dts: true,

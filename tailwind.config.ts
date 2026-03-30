@@ -6,7 +6,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // CSS variable 기반 — 다크모드 자동 전환
         primary: {
           DEFAULT: "var(--color-primary)",
           foreground: "var(--color-primary-foreground)",
@@ -48,6 +47,20 @@ const config: Config = {
         body1: ["16px", { lineHeight: "1.5", fontWeight: "400" }],
         body2: ["14px", { lineHeight: "1.5", fontWeight: "400" }],
         caption1: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
+      },
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        overlay: "var(--shadow-overlay)",
+      },
+      transitionDuration: {
+        fast: "var(--duration-fast)",
+        normal: "var(--duration-normal)",
+        slow: "var(--duration-slow)",
+      },
+      transitionTimingFunction: {
+        "ease-spring": "var(--ease-spring)",
       },
       keyframes: {
         shimmer: {

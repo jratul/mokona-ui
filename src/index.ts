@@ -61,8 +61,34 @@ export { OTPInput, type OTPInputProps } from "./components/OTPInput";
 export { Popover, type PopoverProps } from "./components/Popover";
 export { DropdownMenu, type DropdownMenuProps, type DropdownMenuItem } from "./components/DropdownMenu";
 
+// Form
+export {
+  FormRoot,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormDescription,
+  FormMessage,
+} from "./components/Form";
+
+// Icon
+export { Icon, type IconProps, type IconSize } from "./components/Icon";
+
 // Tokens
-export { colors, typography, type TypographyVariant } from "./tokens";
+export {
+  colors,
+  typography,
+  type TypographyVariant,
+  shadows,
+  type ShadowToken,
+  spacing,
+  type SpacingToken,
+  motion,
+  duration,
+  easing,
+  type DurationToken,
+  type EasingToken,
+} from "./tokens";
 
 // Utils
 export { cn } from "./utils/cn";
