@@ -52,6 +52,14 @@ export { Tooltip, type TooltipProps } from "./components/Tooltip";
 
 // Date
 export { Calendar, type CalendarProps } from "./components/Calendar";
+export { DatePicker, type DatePickerProps } from "./components/DatePicker";
+
+// Input (추가)
+export { OTPInput, type OTPInputProps } from "./components/OTPInput";
+
+// Overlay (추가)
+export { Popover, type PopoverProps } from "./components/Popover";
+export { DropdownMenu, type DropdownMenuProps, type DropdownMenuItem } from "./components/DropdownMenu";
 
 // Tokens
 export { colors, typography, type TypographyVariant } from "./tokens";
