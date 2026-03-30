@@ -1,0 +1,22 @@
+# Source
+src/
+*.stories.tsx
+*.test.tsx
+
+# Config
+tsup.config.ts
+tailwind.config.ts
+postcss.config.js
+vite.config.ts
+vitest.config.ts
+.storybook/
+tsconfig.json
+
+# Dev
+node_modules/
+.changeset/
+coverage/
+
+# Misc
+*.log
+.DS_Store
