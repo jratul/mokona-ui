@@ -10,9 +10,9 @@ export interface LoadingProps {
 }
 
 const sizeMap = {
-  sm: { dot: 8, gap: 6, height: 32, ring: 20, stroke: 2.5 },
-  md: { dot: 12, gap: 8, height: 48, ring: 32, stroke: 3 },
-  lg: { dot: 16, gap: 10, height: 64, ring: 44, stroke: 4 },
+  sm: { dot: 8, gap: 6, height: 32, ring: 20, stroke: 2.5, blob: 20 },
+  md: { dot: 12, gap: 8, height: 48, ring: 32, stroke: 3, blob: 32 },
+  lg: { dot: 16, gap: 10, height: 64, ring: 44, stroke: 4, blob: 48 },
 };
 
 // ── Spin ───────────────────────────────────────────────────────────────────
@@ -60,13 +60,13 @@ function SpinLoader({ size, color }: { size: NonNullable<LoadingProps["size"]>; 
 // ── Squish (Blob morph) ────────────────────────────────────────────────────
 // 하나의 젤리 blob이 상하좌우로 늘어났다 줄어들었다 하는 유기적 모프 애니메이션
 function SquishLoader({ size, color }: { size: NonNullable<LoadingProps["size"]>; color: string }) {
-  const { dot } = sizeMap[size];
+  const { blob } = sizeMap[size];
 
   return (
     <m.div
       style={{
-        width: dot,
-        height: dot,
+        width: blob,
+        height: blob,
         backgroundColor: color,
       }}
       animate={{
