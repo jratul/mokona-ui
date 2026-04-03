@@ -200,6 +200,51 @@
       "import": "./dist/loading.js",
       "require": "./dist/loading.cjs"
     },
+    "./search-field": {
+      "types": "./dist/search-field.d.ts",
+      "import": "./dist/search-field.js",
+      "require": "./dist/search-field.cjs"
+    },
+    "./icon-button": {
+      "types": "./dist/icon-button.d.ts",
+      "import": "./dist/icon-button.js",
+      "require": "./dist/icon-button.cjs"
+    },
+    "./segmented-control": {
+      "types": "./dist/segmented-control.d.ts",
+      "import": "./dist/segmented-control.js",
+      "require": "./dist/segmented-control.cjs"
+    },
+    "./rating": {
+      "types": "./dist/rating.d.ts",
+      "import": "./dist/rating.js",
+      "require": "./dist/rating.cjs"
+    },
+    "./numeric-spinner": {
+      "types": "./dist/numeric-spinner.d.ts",
+      "import": "./dist/numeric-spinner.js",
+      "require": "./dist/numeric-spinner.cjs"
+    },
+    "./dialog": {
+      "types": "./dist/dialog.d.ts",
+      "import": "./dist/dialog.js",
+      "require": "./dist/dialog.cjs"
+    },
+    "./bottom-cta": {
+      "types": "./dist/bottom-cta.d.ts",
+      "import": "./dist/bottom-cta.js",
+      "require": "./dist/bottom-cta.cjs"
+    },
+    "./list-row": {
+      "types": "./dist/list-row.d.ts",
+      "import": "./dist/list-row.js",
+      "require": "./dist/list-row.cjs"
+    },
+    "./result": {
+      "types": "./dist/result.d.ts",
+      "import": "./dist/result.js",
+      "require": "./dist/result.cjs"
+    },
     "./styles.css": "./dist/styles.css"
   },
   "files": [

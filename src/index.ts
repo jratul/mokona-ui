@@ -75,6 +75,23 @@ export {
 // Icon
 export { Icon, type IconProps, type IconSize } from "./components/Icon";
 
+// Input (추가2)
+export { SearchField, type SearchFieldProps } from "./components/SearchField";
+export { IconButton, iconButtonVariants, type IconButtonProps } from "./components/IconButton";
+export { SegmentedControl, type SegmentedControlProps, type SegmentedControlItem } from "./components/SegmentedControl";
+export { NumericSpinner, type NumericSpinnerProps } from "./components/NumericSpinner";
+
+// Feedback (추가2)
+export { Rating, type RatingProps } from "./components/Rating";
+export { AlertDialog, ConfirmDialog, type AlertDialogProps, type ConfirmDialogProps } from "./components/Dialog";
+export { Result, type ResultProps, type ResultStatus } from "./components/Result";
+
+// Layout (추가2)
+export { BottomCTA, type BottomCTAProps } from "./components/BottomCTA";
+
+// Data Display (추가2)
+export { ListRow, type ListRowProps } from "./components/ListRow";
+
 // Tokens
 export {
   colors,
