@@ -45,6 +45,7 @@ export { Accordion, type AccordionProps, type AccordionItem } from "./components
 export { Card, cardVariants, type CardProps } from "./components/Card";
 export { Spinner, type SpinnerProps } from "./components/Spinner";
 export { Skeleton, type SkeletonProps } from "./components/Skeleton";
+export { Loading, type LoadingProps } from "./components/Loading";
 
 // Overlay
 export { Modal, type ModalProps } from "./components/Modal";

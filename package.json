@@ -195,6 +195,11 @@
       "import": "./dist/icon.js",
       "require": "./dist/icon.cjs"
     },
+    "./loading": {
+      "types": "./dist/loading.d.ts",
+      "import": "./dist/loading.js",
+      "require": "./dist/loading.cjs"
+    },
     "./styles.css": "./dist/styles.css"
   },
   "files": [

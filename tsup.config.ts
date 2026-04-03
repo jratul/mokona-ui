@@ -39,6 +39,7 @@ export default defineConfig({
     "dropdown-menu": "src/components/DropdownMenu/index.ts",
     form: "src/components/Form/index.ts",
     icon: "src/components/Icon/index.ts",
+    loading: "src/components/Loading/index.ts",
   },
   format: ["cjs", "esm"],
   dts: true,
