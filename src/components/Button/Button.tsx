@@ -87,18 +87,31 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         >
           <Comp
             ref={ref}
-            className={cn(buttonVariants({ variant, size, fullWidth, className }))}
+            className={cn(
+              buttonVariants({ variant, size, fullWidth, className }),
+              "relative overflow-hidden"
+            )}
             disabled={disabled || loading}
             aria-disabled={disabled || loading}
+            aria-busy={loading}
             {...props}
           >
-            {loading ? (
-              <>
-                <Spinner size={size === "sm" ? 14 : 16} />
-                {children}
-              </>
-            ) : (
-              children
+            {/* 실제 컨텐츠 — loading 중에는 투명하게 숨김 (레이아웃 유지) */}
+            <span
+              className={cn(
+                "inline-flex items-center gap-[inherit] transition-opacity duration-150",
+                loading ? "opacity-0" : "opacity-100"
+              )}
+              aria-hidden={loading}
+            >
+              {children}
+            </span>
+
+            {/* loading 오버레이 + 도트 */}
+            {loading && (
+              <span className="absolute inset-0 flex items-center justify-center rounded-[inherit] bg-black/10">
+                <ButtonDots size={size} />
+              </span>
             )}
           </Comp>
         </m.div>
@@ -108,28 +121,37 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-function Spinner({ size = 16 }: { size?: number }) {
+// ── 3-dot sequential loader ─────────────────────────────────────────────────
+const dotSizeMap = { sm: 5, md: 6, lg: 7 };
+const dotGapMap = { sm: 4, md: 5, lg: 6 };
+
+function ButtonDots({ size }: { size?: "sm" | "md" | "lg" | null }) {
+  const dotSize = dotSizeMap[size ?? "md"];
+  const gap = dotGapMap[size ?? "md"];
+
   return (
-    <m.svg
-      width={size}
-      height={size}
-      viewBox="0 0 16 16"
-      fill="none"
-      animate={{ rotate: 360 }}
-      transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-      aria-hidden="true"
-    >
-      <circle
-        cx="8"
-        cy="8"
-        r="6"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeDasharray="25 13"
-        opacity="0.8"
-      />
-    </m.svg>
+    <span style={{ display: "inline-flex", alignItems: "center", gap }}>
+      {[0, 1, 2].map((i) => (
+        <m.span
+          key={i}
+          style={{
+            width: dotSize,
+            height: dotSize,
+            borderRadius: "50%",
+            backgroundColor: "currentColor",
+            display: "inline-block",
+            flexShrink: 0,
+          }}
+          animate={{ y: [0, -(dotSize * 0.8), 0] }}
+          transition={{
+            duration: 0.6,
+            repeat: Infinity,
+            delay: i * 0.15,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </span>
   );
 }
 
