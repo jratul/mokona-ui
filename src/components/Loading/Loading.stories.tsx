@@ -7,7 +7,7 @@ const meta: Meta<typeof Loading> = {
   tags: ["autodocs"],
   parameters: { layout: "centered" },
   argTypes: {
-    variant: { control: "radio", options: ["wave", "squish"] },
+    variant: { control: "radio", options: ["wave", "squish", "spin"] },
     size: { control: "radio", options: ["sm", "md", "lg"] },
     color: { control: "color" },
   },
@@ -23,6 +23,10 @@ export const Squish: Story = {
   args: { variant: "squish", size: "md" },
 };
 
+export const Spin: Story = {
+  args: { variant: "spin", size: "md" },
+};
+
 export const Sizes: Story = {
   render: () => (
     <div className="flex flex-col items-center gap-10">
@@ -32,6 +36,7 @@ export const Sizes: Story = {
           <div className="flex items-center gap-12">
             <Loading variant="wave" size={size} />
             <Loading variant="squish" size={size} />
+            <Loading variant="spin" size={size} />
           </div>
         </div>
       ))}
@@ -49,6 +54,10 @@ export const Variants: Story = {
       <div className="flex flex-col items-center gap-4">
         <Loading variant="squish" size="lg" />
         <span className="text-[13px] text-[var(--color-muted-foreground)]">squish</span>
+      </div>
+      <div className="flex flex-col items-center gap-4">
+        <Loading variant="spin" size="lg" />
+        <span className="text-[13px] text-[var(--color-muted-foreground)]">spin</span>
       </div>
     </div>
   ),
