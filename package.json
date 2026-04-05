@@ -1,7 +1,7 @@
 {
   "name": "mokona-ui",
   "version": "0.0.1",
-  "description": "Toss-style React UI component library",
+  "description": "React UI component library",
   "author": "jratul",
   "license": "MIT",
   "packageManager": "pnpm@10.33.0",
