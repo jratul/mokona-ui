@@ -49,6 +49,7 @@ export default defineConfig({
     "bottom-cta": "src/components/BottomCTA/index.ts",
     "list-row": "src/components/ListRow/index.ts",
     result: "src/components/Result/index.ts",
+    drawer: "src/components/Drawer/index.ts",
   },
   format: ["cjs", "esm"],
   dts: true,
