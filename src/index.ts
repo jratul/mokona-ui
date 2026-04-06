@@ -49,6 +49,7 @@ export { Loading, type LoadingProps } from "./components/Loading";
 
 // Overlay
 export { Modal, type ModalProps } from "./components/Modal";
+export { Drawer, type DrawerProps } from "./components/Drawer";
 export { Tooltip, type TooltipProps } from "./components/Tooltip";
 
 // Date
