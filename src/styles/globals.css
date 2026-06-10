@@ -19,10 +19,12 @@
 
     /* Neutral */
     --color-background: #ffffff;
+    --color-surface: #ffffff;
     --color-foreground: #191f28;
     --color-muted: #f2f4f6;
     --color-muted-foreground: #8b95a1;
     --color-border: #e5e8eb;
+    --color-input: #ffffff;
     --color-overlay: rgba(0, 0, 0, 0.4);
 
     /* Gray scale */
@@ -77,10 +79,12 @@
     --color-warning: #ffaa44;
 
     --color-background: #191f28;
+    --color-surface: #242c38;
     --color-foreground: #f2f4f6;
     --color-muted: #2d3540;
     --color-muted-foreground: #6b7684;
     --color-border: #333d4b;
+    --color-input: #242c38;
     --color-overlay: rgba(0, 0, 0, 0.6);
 
     --color-gray-50: #2d3540;
