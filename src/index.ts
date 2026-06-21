@@ -5,7 +5,7 @@ export { Text, textVariants, type TextProps } from "./components/Text";
 export { Divider, type DividerProps } from "./components/Divider";
 
 // Input
-export { TextField, type TextFieldProps } from "./components/TextField";
+export { TextField, textFieldVariants, type TextFieldProps } from "./components/TextField";
 export { Checkbox, type CheckboxProps } from "./components/Checkbox";
 export { Toggle, type ToggleProps } from "./components/Toggle";
 export { Textarea, type TextareaProps } from "./components/Textarea";

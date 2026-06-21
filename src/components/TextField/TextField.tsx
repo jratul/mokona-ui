@@ -1,8 +1,36 @@
 import * as React from "react";
 import * as Label from "@radix-ui/react-label";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 
-export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+const textFieldVariants = cva(
+  [
+    "w-full rounded-xl",
+    "text-[var(--color-foreground)]",
+    "bg-[var(--color-muted)] outline-none",
+    "border-2 border-transparent",
+    "placeholder:text-[var(--color-muted-foreground)]",
+    "transition-colors duration-150",
+    "focus:border-[var(--color-primary)] focus:bg-[var(--color-background)]",
+    "disabled:opacity-40 disabled:cursor-not-allowed",
+  ],
+  {
+    variants: {
+      size: {
+        sm: "h-9 px-3 text-[14px]",
+        md: "h-12 px-4 text-[16px]",
+        lg: "h-14 px-4 text-[16px]",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  }
+);
+
+export interface TextFieldProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
+    VariantProps<typeof textFieldVariants> {
   label?: string;
   helperText?: string;
   errorMessage?: string;
@@ -10,7 +38,7 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
 }
 
 const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ className, label, helperText, errorMessage, isError, id, ...props }, ref) => {
+  ({ className, label, helperText, errorMessage, isError, size, id, ...props }, ref) => {
     const generatedId = React.useId();
     const inputId = id ?? generatedId;
     const hasError = isError || !!errorMessage;
@@ -29,14 +57,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            "w-full h-12 px-4 rounded-xl",
-            "text-[16px] text-[var(--color-foreground)]",
-            "bg-[var(--color-muted)] outline-none",
-            "border-2 border-transparent",
-            "placeholder:text-[var(--color-muted-foreground)]",
-            "transition-colors duration-150",
-            "focus:border-[var(--color-primary)] focus:bg-[var(--color-background)]",
-            "disabled:opacity-40 disabled:cursor-not-allowed",
+            textFieldVariants({ size }),
             hasError && "border-[var(--color-negative)] bg-[var(--color-background)]",
             className
           )}
@@ -69,4 +90,4 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
 );
 TextField.displayName = "TextField";
 
-export { TextField };
+export { TextField, textFieldVariants };

@@ -43,3 +43,13 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <TextField size="sm" label="Small" placeholder="sm" />
+      <TextField size="md" label="Medium (기본값)" placeholder="md" />
+      <TextField size="lg" label="Large" placeholder="lg" />
+    </div>
+  ),
+};

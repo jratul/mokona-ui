@@ -27,4 +27,15 @@ describe("TextField", () => {
     render(<TextField helperText="인증번호가 발송됩니다" />);
     expect(screen.getByText("인증번호가 발송됩니다")).toBeInTheDocument();
   });
+
+  it("size variant에 따라 높이 클래스가 달라진다", () => {
+    const { rerender } = render(<TextField size="sm" />);
+    expect(screen.getByRole("textbox")).toHaveClass("h-9");
+
+    rerender(<TextField size="lg" />);
+    expect(screen.getByRole("textbox")).toHaveClass("h-14");
+
+    rerender(<TextField />);
+    expect(screen.getByRole("textbox")).toHaveClass("h-12");
+  });
 });
