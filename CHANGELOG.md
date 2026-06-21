@@ -1,5 +1,11 @@
 # mokona-ui
 
+## 0.0.3
+
+### Patch Changes
+
+- Add `size` variant (`sm` / `md` / `lg`) to `TextField`, matching the pattern already used by `Button`.
+
 ## 0.0.2
 
 ### Patch Changes
