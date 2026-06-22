@@ -1,5 +1,11 @@
 # mokona-ui
 
+## 0.0.4
+
+### Patch Changes
+
+- Add `size` variant (`sm` / `md` / `lg`) to `Checkbox`, `Toggle`, and `RadioGroup`, matching the pattern already used by `Button` and `TextField`.
+
 ## 0.0.3
 
 ### Patch Changes
