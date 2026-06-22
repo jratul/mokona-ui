@@ -13,12 +13,19 @@ export interface RadioGroupProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> {
   items: RadioItem[];
   orientation?: "horizontal" | "vertical";
+  size?: "sm" | "md" | "lg";
 }
+
+const sizeMap = {
+  sm: { dot: "h-4 w-4", indicator: "w-2 h-2", label: "text-[14px]", description: "text-[12px]" },
+  md: { dot: "h-5 w-5", indicator: "w-2.5 h-2.5", label: "text-[16px]", description: "text-[13px]" },
+  lg: { dot: "h-6 w-6", indicator: "w-3 h-3", label: "text-[18px]", description: "text-[14px]" },
+};
 
 const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
   RadioGroupProps
->(({ className, items, orientation = "vertical", ...props }, ref) => (
+>(({ className, items, orientation = "vertical", size = "md", ...props }, ref) => (
   <RadioGroupPrimitive.Root
     ref={ref}
     className={cn(
@@ -29,14 +36,16 @@ const RadioGroup = React.forwardRef<
     {...props}
   >
     {items.map((item) => (
-      <RadioItem key={item.value} item={item} />
+      <RadioItem key={item.value} item={item} size={size} />
     ))}
   </RadioGroupPrimitive.Root>
 ));
 RadioGroup.displayName = "RadioGroup";
 
-function RadioItem({ item }: { item: RadioItem }) {
+function RadioItem({ item, size }: { item: RadioItem; size: "sm" | "md" | "lg" }) {
   const id = React.useId();
+  const { dot, indicator, label: labelSize, description: descriptionSize } = sizeMap[size];
+
   return (
     <div className={cn("flex items-start gap-2.5", item.disabled && "opacity-40")}>
       <RadioGroupPrimitive.Item
@@ -44,7 +53,8 @@ function RadioItem({ item }: { item: RadioItem }) {
         value={item.value}
         disabled={item.disabled}
         className={cn(
-          "mt-0.5 h-5 w-5 shrink-0 rounded-full border-2 border-[var(--color-border)]",
+          dot,
+          "mt-0.5 shrink-0 rounded-full border-2 border-[var(--color-border)]",
           "transition-colors duration-150",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2",
           "data-[state=checked]:border-[var(--color-primary)]",
@@ -52,13 +62,13 @@ function RadioItem({ item }: { item: RadioItem }) {
         )}
       >
         <RadioGroupPrimitive.Indicator className="flex items-center justify-center w-full h-full relative">
-          <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-primary)]" />
+          <div className={cn(indicator, "rounded-full bg-[var(--color-primary)]")} />
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
       <label htmlFor={id} className="flex flex-col gap-0.5 cursor-pointer select-none">
-        <span className="text-[16px] text-[var(--color-foreground)]">{item.label}</span>
+        <span className={cn(labelSize, "text-[var(--color-foreground)]")}>{item.label}</span>
         {item.description && (
-          <span className="text-[13px] text-[var(--color-muted-foreground)]">{item.description}</span>
+          <span className={cn(descriptionSize, "text-[var(--color-muted-foreground)]")}>{item.description}</span>
         )}
       </label>
     </div>

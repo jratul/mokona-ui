@@ -22,4 +22,15 @@ describe("RadioGroup", () => {
     await user.click(screen.getByText("옵션 B"));
     expect(onValueChange).toHaveBeenCalledWith("b");
   });
+
+  it("size variant에 따라 크기 클래스가 달라진다", () => {
+    const { rerender } = render(<RadioGroup items={items} size="sm" />);
+    expect(screen.getAllByRole("radio")[0]).toHaveClass("h-4", "w-4");
+
+    rerender(<RadioGroup items={items} size="lg" />);
+    expect(screen.getAllByRole("radio")[0]).toHaveClass("h-6", "w-6");
+
+    rerender(<RadioGroup items={items} />);
+    expect(screen.getAllByRole("radio")[0]).toHaveClass("h-5", "w-5");
+  });
 });

@@ -37,6 +37,16 @@ export const Disabled: Story = {
   },
 };
 
+export const Sizes: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 360 }}>
+      <Toggle size="sm" label="Small" defaultChecked />
+      <Toggle size="md" label="Medium (기본값)" defaultChecked />
+      <Toggle size="lg" label="Large" defaultChecked />
+    </div>
+  ),
+};
+
 export const List: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 360 }}>

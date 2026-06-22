@@ -21,4 +21,15 @@ describe("Toggle", () => {
     render(<Toggle description="설명 텍스트" />);
     expect(screen.getByText("설명 텍스트")).toBeInTheDocument();
   });
+
+  it("size variant에 따라 크기 클래스가 달라진다", () => {
+    const { rerender } = render(<Toggle size="sm" />);
+    expect(screen.getByRole("switch")).toHaveClass("h-6", "w-10");
+
+    rerender(<Toggle size="lg" />);
+    expect(screen.getByRole("switch")).toHaveClass("h-8", "w-14");
+
+    rerender(<Toggle />);
+    expect(screen.getByRole("switch")).toHaveClass("h-7", "w-12");
+  });
 });

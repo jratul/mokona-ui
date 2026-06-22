@@ -7,13 +7,21 @@ export interface ToggleProps
   extends React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root> {
   label?: string;
   description?: string;
+  size?: "sm" | "md" | "lg";
 }
+
+const sizeMap = {
+  sm: { track: "h-6 w-10", thumb: "h-4 w-4 data-[state=checked]:translate-x-5", label: "text-[14px]", description: "text-[12px]" },
+  md: { track: "h-7 w-12", thumb: "h-5 w-5 data-[state=checked]:translate-x-6", label: "text-[16px]", description: "text-[13px]" },
+  lg: { track: "h-8 w-14", thumb: "h-6 w-6 data-[state=checked]:translate-x-7", label: "text-[18px]", description: "text-[14px]" },
+};
 
 const Toggle = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitive.Root>,
   ToggleProps
->(({ className, label, description, id, ...props }, ref) => {
+>(({ className, label, description, size = "md", id, ...props }, ref) => {
   const toggleId = id ?? React.useId();
+  const { track, thumb, label: labelSize, description: descriptionSize } = sizeMap[size];
 
   return (
     <div className="flex items-center justify-between gap-4 w-full">
@@ -22,13 +30,13 @@ const Toggle = React.forwardRef<
           {label && (
             <Label.Root
               htmlFor={toggleId}
-              className="text-[16px] font-medium text-[var(--color-foreground)] cursor-pointer select-none"
+              className={cn(labelSize, "font-medium text-[var(--color-foreground)] cursor-pointer select-none")}
             >
               {label}
             </Label.Root>
           )}
           {description && (
-            <p className="text-[13px] text-[var(--color-muted-foreground)]">{description}</p>
+            <p className={cn(descriptionSize, "text-[var(--color-muted-foreground)]")}>{description}</p>
           )}
         </div>
       )}
@@ -36,7 +44,8 @@ const Toggle = React.forwardRef<
         ref={ref}
         id={toggleId}
         className={cn(
-          "relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full",
+          track,
+          "relative inline-flex shrink-0 cursor-pointer rounded-full",
           "bg-[var(--color-gray-300)]",
           "transition-colors duration-200 ease-in-out",
           "data-[state=checked]:bg-[var(--color-primary)]",
@@ -48,10 +57,10 @@ const Toggle = React.forwardRef<
       >
         <SwitchPrimitive.Thumb
           className={cn(
-            "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-md",
+            thumb,
+            "pointer-events-none block rounded-full bg-white shadow-md",
             "transition-transform duration-200 ease-in-out",
-            "translate-x-1",
-            "data-[state=checked]:translate-x-6"
+            "translate-x-1"
           )}
         />
       </SwitchPrimitive.Root>

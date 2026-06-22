@@ -23,6 +23,16 @@ export const Disabled: Story = {
   args: { label: "마케팅 수신 동의 (선택)", disabled: true },
 };
 
+export const Sizes: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <Checkbox size="sm" label="Small" defaultChecked />
+      <Checkbox size="md" label="Medium (기본값)" defaultChecked />
+      <Checkbox size="lg" label="Large" defaultChecked />
+    </div>
+  ),
+};
+
 export const Group: Story = {
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>

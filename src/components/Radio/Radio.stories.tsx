@@ -30,6 +30,17 @@ export const WithDescription: Story = {
   },
 };
 
+export const Sizes: Story = {
+  args: {
+    size: "lg",
+    items: [
+      { value: "kb", label: "국민은행" },
+      { value: "toss", label: "토스뱅크" },
+      { value: "kakao", label: "카카오뱅크" },
+    ],
+  },
+};
+
 export const Horizontal: Story = {
   args: {
     orientation: "horizontal",

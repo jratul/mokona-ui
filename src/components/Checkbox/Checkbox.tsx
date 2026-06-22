@@ -7,14 +7,22 @@ import { cn } from "../../utils/cn";
 export interface CheckboxProps
   extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
   label?: string;
+  size?: "sm" | "md" | "lg";
 }
+
+const sizeMap = {
+  sm: { box: "h-4 w-4", check: { width: 9, height: 6 }, label: "text-[14px]" },
+  md: { box: "h-5 w-5", check: { width: 11, height: 8 }, label: "text-[16px]" },
+  lg: { box: "h-6 w-6", check: { width: 13, height: 10 }, label: "text-[18px]" },
+};
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ className, label, id, ...props }, ref) => {
+>(({ className, label, size = "md", id, ...props }, ref) => {
   const generatedId = React.useId();
   const checkboxId = id ?? generatedId;
+  const { box, check, label: labelSize } = sizeMap[size];
 
   return (
     <div className="flex items-center gap-2.5">
@@ -22,7 +30,8 @@ const Checkbox = React.forwardRef<
         ref={ref}
         id={checkboxId}
         className={cn(
-          "h-5 w-5 rounded-md shrink-0",
+          box,
+          "rounded-md shrink-0",
           "border-2 border-[var(--color-border)]",
           "bg-[var(--color-background)]",
           "transition-colors duration-150",
@@ -36,8 +45,8 @@ const Checkbox = React.forwardRef<
         <CheckboxPrimitive.Indicator className="flex items-center justify-center">
           <LazyMotion features={domAnimation}>
             <m.svg
-              width="11"
-              height="8"
+              width={check.width}
+              height={check.height}
               viewBox="0 0 11 8"
               fill="none"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -58,7 +67,7 @@ const Checkbox = React.forwardRef<
       {label && (
         <Label.Root
           htmlFor={checkboxId}
-          className="text-[16px] text-[var(--color-foreground)] cursor-pointer select-none"
+          className={cn(labelSize, "text-[var(--color-foreground)] cursor-pointer select-none")}
         >
           {label}
         </Label.Root>

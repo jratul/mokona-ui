@@ -24,4 +24,15 @@ describe("Checkbox", () => {
     await user.click(screen.getByRole("checkbox"));
     expect(onCheckedChange).not.toHaveBeenCalled();
   });
+
+  it("size variant에 따라 크기 클래스가 달라진다", () => {
+    const { rerender } = render(<Checkbox size="sm" />);
+    expect(screen.getByRole("checkbox")).toHaveClass("h-4", "w-4");
+
+    rerender(<Checkbox size="lg" />);
+    expect(screen.getByRole("checkbox")).toHaveClass("h-6", "w-6");
+
+    rerender(<Checkbox />);
+    expect(screen.getByRole("checkbox")).toHaveClass("h-5", "w-5");
+  });
 });
