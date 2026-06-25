@@ -74,7 +74,7 @@ const SegmentedControl = ({
               "relative z-10 flex-1 rounded-lg font-medium transition-colors duration-150",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]",
               "disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer",
-              size === "sm" ? "h-7 text-[13px]" : "h-8 text-[14px]",
+              size === "sm" ? "h-7 px-3 text-[13px]" : "h-8 px-4 text-[14px]",
               item.value === activeValue
                 ? "text-[var(--color-foreground)]"
                 : "text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)]"
