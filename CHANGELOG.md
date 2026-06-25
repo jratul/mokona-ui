@@ -1,5 +1,11 @@
 # mokona-ui
 
+## 0.0.5
+
+### Patch Changes
+
+- Fix `SegmentedControl` tabs rendering with no horizontal padding, which made the control hug the label text tightly and look cramped whenever it wasn't `fullWidth`. Tab buttons now get `px-3` (sm) / `px-4` (md), matching `Tabs`.
+
 ## 0.0.4
 
 ### Patch Changes
