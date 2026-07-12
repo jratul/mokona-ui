@@ -83,7 +83,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <m.div
           whileTap={{ scale: disabled || loading ? 1 : 0.96 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          style={{ display: "inline-flex", width: fullWidth ? "100%" : undefined }}
+          style={{
+            display: "inline-flex",
+            width: fullWidth ? "100%" : undefined,
+            alignSelf: fullWidth ? undefined : "flex-start"
+          }}
         >
           <Comp
             ref={ref}

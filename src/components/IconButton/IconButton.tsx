@@ -68,7 +68,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         <m.div
           whileTap={{ scale: disabled ? 1 : 0.92 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          style={{ display: "inline-flex" }}
+          style={{ display: "inline-flex", alignSelf: "flex-start" }}
         >
           <Comp
             ref={ref}
