@@ -42,6 +42,20 @@ React UI 컴포넌트 라이브러리 (npm 패키지 `mokona-ui`). pnpm 모노 �
 - `pnpm lint` — `tsc --noEmit` (이 프로젝트의 lint는 타입체크만 수행, ESLint 설정 없음)
 - `pnpm storybook` — 컴포넌트 스토리북 개발 서버
 
+## 알려진 버그 패턴 & 수정 이력
+
+### Button/IconButton — flex 부모에서 클릭 시 밀리는 버그 (0.0.6에서 수정)
+
+`Button`/`IconButton`은 `whileTap` 스케일 애니메이션을 위해 실제 버튼을 `m.div` 래퍼로 감싸는 구조다.
+`flex-column`이나 `align-items: stretch` 부모(Electron 앱에서 자주 발생) 안에 두면 래퍼가 부모 전체 너비로 늘어나고,
+`scale(0.96)` 애니메이션이 **래퍼(큰 것)** 중심 기준으로 걸려 실제 버튼이 클릭마다 오른쪽으로 밀리는 것처럼 보인다.
+
+**수정 방법**: 래퍼에 `alignSelf: "flex-start"` 추가 → 래퍼가 항상 콘텐츠 크기로만 존재.
+`fullWidth` 시에는 `alignSelf: undefined`(상속)으로 두어 기존 동작 유지.
+
+`Card`/`Chip`은 래퍼 없이 보이는 요소 자체에 직접 transform이 걸려 있어 이 버그 패턴과 무관.
+새로 애니메이션 래퍼를 씌우는 컴포넌트를 만들 때 동일한 패턴 적용 필요.
+
 ## 작업 시 체크리스트
 
 - 컴포넌트 수정/추가 후: `pnpm lint` (tsc) + `pnpm test` 통과 확인. `dist/`는 git 추적 대상이 아니므로 커밋에 포함시키지 않는다.
