@@ -21,31 +21,28 @@ function ProgressIndeterminateDemo() {
   );
 }
 
+const ANIMATED_COLORS = ["primary", "positive", "negative", "warning"] as const;
+
 function ProgressAnimatedDemo() {
   const [value, setValue] = useState(0);
-  const [running, setRunning] = useState(false);
 
   useEffect(() => {
-    if (!running) return;
-    if (value >= 100) { setRunning(false); return; }
-    const t = setTimeout(() => setValue((v) => Math.min(100, v + 2)), 40);
+    const t = setTimeout(
+      () => setValue((v) => (v >= 100 ? 0 : v + 1)),
+      30,
+    );
     return () => clearTimeout(t);
-  }, [running, value]);
-
-  function restart() {
-    setValue(0);
-    setRunning(true);
-  }
+  }, [value]);
 
   return (
     <div className="flex flex-col gap-3">
-      <Text variant="caption1" color="muted">animated — 0 → 100 채워지는 시연</Text>
-      <Progress value={value} showLabel color="primary" />
-      <div>
-        <Button size="sm" variant="outline" onClick={restart} disabled={running}>
-          {running ? "진행 중..." : value >= 100 ? "다시 실행" : "시작"}
-        </Button>
-      </div>
+      <Text variant="caption1" color="muted">animated — 0 → 100 자동 반복</Text>
+      {ANIMATED_COLORS.map((color) => (
+        <div key={color} className="flex flex-col gap-1">
+          <Text variant="caption1" color="muted">{color}</Text>
+          <Progress value={value} showLabel color={color} />
+        </div>
+      ))}
     </div>
   );
 }
