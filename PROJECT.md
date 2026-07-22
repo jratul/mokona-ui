@@ -6,6 +6,18 @@
 
 ## 설정 파일
 
+### `package.json` scripts 요약
+
+| 스크립트 | 명령 | 설명 |
+|---|---|---|
+| `build` | `tsup && tailwindcss ...` | 라이브러리 번들 + CSS 빌드 |
+| `prepublishOnly` | `pnpm build` | `pnpm publish` 실행 전 자동으로 빌드 선행 |
+| `storybook` | `storybook dev -p 6006` | 컴포넌트 개발 서버 |
+| `test` | `vitest run` | 전체 단위 테스트 |
+| `lint` | `tsc --noEmit` | 타입 체크 (ESLint 미사용) |
+
+배포는 GitHub Actions(`.github/workflows/publish.yml`)가 담당한다. `package.json` version을 올리고 push하면 CI가 build → publish를 자동 처리한다.
+
 ### `tsup.config.ts`
 
 라이브러리 번들러. 컴포넌트별 entry를 나열해 subpath import(`mokona-ui/button`)가 동작하도록 각각 개별 번들을 생성한다. `splitting: true`로 공통 코드(`cn`, `motion` 등)를 청크 파일로 분리해 중복 포함을 방지한다.

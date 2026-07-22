@@ -20,6 +20,7 @@ React UI 컴포넌트 라이브러리 (npm 패키지 `mokona-ui`). pnpm 모노 �
 - `src/tokens/` — colors, typography, shadows, spacing, motion 토큰 상수
 - `public/` — Storybook 정적 파일 (`favicon.svg`)
 - `.storybook/` — Storybook 설정 (`main.ts`, `preview.ts`, `manager-head.html`)
+- `.github/workflows/publish.yml` — npm 자동 배포 워크플로
 - `showcase/` — Next.js 데모 앱 (이 레포에 통합, Vercel Root Directory = `showcase`)
 
 ## 컴포넌트 작성 패턴
@@ -47,6 +48,14 @@ React UI 컴포넌트 라이브러리 (npm 패키지 `mokona-ui`). pnpm 모노 �
 - `pnpm lint` — `tsc --noEmit` (이 프로젝트의 lint는 타입체크만 수행, ESLint 설정 없음)
 - `pnpm storybook` — 컴포넌트 스토리북 개발 서버
 
+## npm 배포
+
+`package.json`의 `version`을 올리고 커밋/푸시하면 GitHub Actions(`.github/workflows/publish.yml`)가
+자동으로 build → publish 처리한다. 이미 배포된 버전이면 알아서 스킵한다.
+
+- **수동 배포 시**: `pnpm publish` — `prepublishOnly`로 build가 먼저 자동 실행됨
+- **주의**: `dist/`는 git에 추적되지 않으므로 커밋에 포함시키지 않는다. CI가 빌드를 담당한다.
+
 ## 알려진 버그 패턴 & 수정 이력
 
 ### Button/IconButton — flex 부모에서 클릭 시 밀리는 버그 (0.0.6에서 수정)
@@ -68,6 +77,7 @@ React UI 컴포넌트 라이브러리 (npm 패키지 `mokona-ui`). pnpm 모노 �
 
 - 로컬 개발: `cd showcase && pnpm dev`
 - Vercel 배포: mokona-ui 레포 연결 후 **Root Directory = `showcase`** 설정
+- favicon: `showcase/app/icon.svg` (Next.js App Router가 자동으로 파비콘으로 인식)
 - showcase의 `package.json`에 `"mokona-ui": "^x.x.x"`로 npm 버전을 명시하므로,
   새 버전 배포 후 `showcase/package.json`의 버전을 올리고 커밋하면 Vercel에 자동 반영된다.
 - `update-consumers.ps1` 대상에서 제외됨 — 이 레포 안에서 직접 관리한다.
@@ -96,4 +106,5 @@ powershell -File .\update-consumers.ps1
 ## 작업 시 체크리스트
 
 - 컴포넌트 수정/추가 후: `pnpm lint` (tsc) + `pnpm test` 통과 확인. `dist/`는 git 추적 대상이 아니므로 커밋에 포함시키지 않는다.
+- **버전 배포**: `package.json` version 올리고 커밋/푸시 → GitHub Actions가 자동으로 build+publish 처리.
 - 전역 규칙(`~/.claude/CLAUDE.md`)의 "작업 끝나면 커밋+푸시", "커밋 author는 jratul만" 등을 따른다.

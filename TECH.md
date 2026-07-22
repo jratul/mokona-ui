@@ -260,6 +260,37 @@ export default defineConfig({
 
 ---
 
+### `.github/workflows/publish.yml` — npm 자동 배포
+
+`main` 브랜치에 push될 때마다 실행된다. npm에 이미 배포된 버전이면 스킵하므로, showcase만 변경된 push에서는 publish가 일어나지 않는다.
+
+```yaml
+- name: Check if version is already published
+  id: version-check
+  run: |
+    VERSION=$(node -p "require('./package.json').version")
+    if npm show mokona-ui@$VERSION version 2>/dev/null | grep -q "$VERSION"; then
+      echo "skip=true" >> $GITHUB_OUTPUT
+    else
+      echo "skip=false" >> $GITHUB_OUTPUT
+    fi
+
+- name: Build
+  if: steps.version-check.outputs.skip == 'false'
+  run: pnpm build
+
+- name: Publish
+  if: steps.version-check.outputs.skip == 'false'
+  run: pnpm publish --no-git-checks --access public
+  env:
+    NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+`NPM_TOKEN`은 GitHub repository secret으로 등록된 npm Granular Access Token(2FA bypass)이다.  
+`pnpm/action-setup@v4`는 `package.json`의 `packageManager` 필드에서 pnpm 버전을 자동으로 읽는다.
+
+---
+
 ## Storybook
 
 ### `.storybook/main.ts`

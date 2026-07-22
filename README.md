@@ -294,8 +294,8 @@ pnpm build
 # 테스트
 pnpm test
 
-# 릴리즈 (버전 package.json 직접 수정 후)
-pnpm publish              # npm OTP 입력 필요
+# 릴리즈 — package.json version 올리고 커밋/푸시하면 GitHub Actions가 자동 배포
+# (수동 배포 시: pnpm publish — prepublishOnly로 build 자동 선행 실행)
 ```
 
 더 자세한 내용은 [CLAUDE.md](./CLAUDE.md) · [TECH.md](./TECH.md) · [PROJECT.md](./PROJECT.md)를 참고하세요.
