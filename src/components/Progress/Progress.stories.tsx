@@ -46,3 +46,15 @@ export const Indeterminate: Story = {
     </div>
   ),
 };
+
+export const Animated: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
+      <Progress value={60} animated size="sm" />
+      <Progress value={60} animated size="md" />
+      <Progress value={60} animated size="lg" />
+      <Progress value={40} animated color="positive" />
+      <Progress value={80} animated color="warning" />
+    </div>
+  ),
+};
