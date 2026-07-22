@@ -14,8 +14,13 @@ React UI 컴포넌트 라이브러리 (npm 패키지 `mokona-ui`). pnpm 모노 �
 - `src/components/<ComponentName>/` — 컴포넌트마다 폴더 1개
   - `<Name>.tsx`, `<Name>.stories.tsx`, `<Name>.test.tsx`, `index.ts` (재export)
 - `src/utils/cn.ts` — Tailwind 클래스 병합 유틸 (커스텀 font-size 그룹 `text-display1` 등 등록돼 있음)
-- `src/styles/globals.css` — CSS 변수 기반 디자인 토큰 (`--color-primary`, `--color-muted` 등)
+- `src/utils/motion.ts` — Framer Motion `m`, `LazyMotion`, `domAnimation`, `AnimatePresence` 재export
+- `src/styles/globals.css` — CSS 변수 기반 디자인 토큰 (`--color-primary`, `--color-muted` 등) + `@keyframes progress-stripe`
 - `src/index.ts` — 패키지 루트에서 export하는 전체 공개 API
+- `src/tokens/` — colors, typography, shadows, spacing, motion 토큰 상수
+- `public/` — Storybook 정적 파일 (`favicon.svg`)
+- `.storybook/` — Storybook 설정 (`main.ts`, `preview.ts`, `manager-head.html`)
+- `showcase/` — Next.js 데모 앱 (이 레포에 통합, Vercel Root Directory = `showcase`)
 
 ## 컴포넌트 작성 패턴
 
@@ -81,6 +86,12 @@ powershell -File .\update-consumers.ps1
 ```
 
 새 consumer 앱이 생기면 스크립트 상단 `$repos` 배열에 폴더명만 추가하면 된다.
+
+## 참고 문서
+
+- [TECH.md](./TECH.md) — 파일별 기술 상세 (CVA/sizeMap 패턴, Toast 스토어, 빌드 구조 등)
+- [PROJECT.md](./PROJECT.md) — 설정 파일 해설 + 패키지 전체 목록
+- [README.md](./README.md) — 컴포넌트 목록 및 사용법
 
 ## 작업 시 체크리스트
 

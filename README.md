@@ -64,31 +64,47 @@ import { toast, Toaster } from "mokona-ui/toast";
 
 | 컴포넌트 | 설명 |
 |---|---|
-| `TextField` | label, helperText, errorMessage, 접근성 aria 자동 처리 |
-| `Checkbox` | 체크 시 path draw 애니메이션, Radix 접근성 |
-| `Toggle` | label + description 레이아웃 내장, Radix Switch 기반 |
+| `TextField` | label, helperText, errorMessage, 접근성 aria 자동 처리, `size` (sm/md/lg) |
+| `Checkbox` | 체크 시 path draw 애니메이션, Radix 접근성, `size` (sm/md/lg) |
+| `Toggle` | label + description 레이아웃 내장, Radix Switch 기반, `size` (sm/md/lg) |
+| `RadioGroup` | `items` 배열로 선언, `size` (sm/md/lg) |
+| `Textarea` | 자동 높이 조절, label/helper 내장 |
+| `Select` | Radix 기반 드롭다운, `options` 배열 |
+| `Slider` | 범위 슬라이더, Radix Slider 기반 |
+| `SegmentedControl` | 탭 전환 컨트롤, sliding 인디케이터 애니메이션, `size` (sm/md) |
+| `NumericSpinner` | +/- 버튼으로 숫자 입력, min/max/step 지원 |
+| `SearchField` | 검색 입력 + 지우기 버튼 |
+| `OTPInput` | N자리 일회용 코드 입력 |
 
 ```tsx
-<TextField
-  label="이메일"
-  placeholder="example@email.com"
-  isError
-  errorMessage="올바른 이메일 형식이 아닙니다"
+<TextField label="이메일" placeholder="example@email.com" isError errorMessage="올바른 이메일 형식이 아닙니다" size="lg" />
+
+<Checkbox label="전체 동의" size="md" onCheckedChange={setChecked} />
+
+<Toggle label="푸시 알림" description="혜택 및 이벤트 소식을 받습니다" size="sm" />
+
+<RadioGroup
+  value={plan}
+  onChange={setPlan}
+  items={[{ value: "basic", label: "기본", description: "월 9,900원" }, { value: "pro", label: "프로", description: "월 19,900원" }]}
+  size="lg"
 />
 
-<Checkbox label="전체 동의" onCheckedChange={setChecked} />
-
-<Toggle label="푸시 알림" description="혜택 및 이벤트 소식을 받습니다" />
+<SegmentedControl items={[{ value: "day", label: "일" }, { value: "week", label: "주" }, { value: "month", label: "월" }]} value={period} onChange={setPeriod} />
 ```
 
 ### Feedback
 
 | 컴포넌트 | 설명 |
 |---|---|
-| `Toast` / `Toaster` / `toast()` | 함수 호출 방식, 4가지 variant |
+| `Toast` / `Toaster` / `toast()` | 함수 호출 방식, 4가지 variant, 콘텐츠 너비 자동 조절, 텍스트 선택 가능 |
 | `BottomSheet` | spring 슬라이드 + 드래그로 닫기 |
 | `Badge` | 6가지 variant, 3가지 size |
 | `Chip` | 선택/해제 상태, 제거 버튼 내장 |
+| `Progress` | `value` 기반 determinate, `indeterminate` prop으로 스트라이프 애니메이션, `size`/`color` 지원 |
+| `Alert` | 아이콘 + 제목 + 설명, 4가지 variant |
+| `AlertDialog` / `ConfirmDialog` | 모달 형태 확인 다이얼로그 |
+| `Rating` | 별점 입력/표시 |
 
 ```tsx
 // 앱 최상단에 Toaster 한 번 추가
@@ -99,20 +115,35 @@ toast("송금이 완료되었습니다");
 toast.positive("계좌가 연결되었습니다");
 toast.negative("오류가 발생했습니다", { description: "잠시 후 다시 시도해주세요" });
 
-// BottomSheet
-const [open, setOpen] = useState(false);
-<BottomSheet open={open} onOpenChange={setOpen} title="송금하기">
-  <Button fullWidth>토스뱅크 110-123-456789</Button>
-</BottomSheet>
+// Progress
+<Progress value={72} showLabel />
+<Progress indeterminate color="primary" />  {/* 스트라이프 흐름 애니메이션 */}
 ```
 
-### Layout
+### Layout / 기타
 
 | 컴포넌트 | 설명 |
 |---|---|
 | `Card` | 3가지 variant, `onClick` 시 tap 애니메이션 자동 활성화 |
 | `Spinner` | 4가지 size, 3가지 color |
 | `Skeleton` | text / circular / rectangular variant, multi-line 지원 |
+| `Tabs` | line / pill variant |
+| `Accordion` | 아코디언, Radix 기반 |
+| `Table` | `columns` + `data` 배열 선언형 |
+| `Pagination` | 페이지 이동 버튼 |
+| `Stepper` | 단계 진행 표시 |
+| `Avatar` | 이미지 + fallback 이니셜 |
+| `Tooltip` | hover 시 설명 팝업 |
+| `Popover` | 클릭 시 떠있는 패널 |
+| `DropdownMenu` | 컨텍스트 메뉴 |
+| `Modal` / `Drawer` | 전체 화면 오버레이 / 사이드 패널 |
+| `Calendar` / `DatePicker` | 날짜 선택 |
+| `BottomCTA` | 화면 하단 고정 CTA 버튼 영역 |
+| `ListRow` | 아이템 목록 행 (아이콘 + 텍스트 + 우측 액션) |
+| `Result` | 성공/실패/로딩 결과 화면 |
+| `Empty` | 빈 상태 안내 |
+| `Icon` | lucide-react 기반 아이콘 래퍼 |
+| `Form` | react-hook-form 연동 Form 필드 |
 
 ```tsx
 <Card variant="elevated" onClick={() => navigate("/detail")}>
@@ -241,11 +272,21 @@ shimmer 애니메이션에 `will-change: transform`을 적용해 GPU 합성 레�
 
 ---
 
+## Showcase
+
+컴포넌트 데모 앱이 [`showcase/`](./showcase/) 폴더에 포함되어 있습니다 (Next.js).
+
+```bash
+cd showcase && pnpm dev   # http://localhost:3000
+```
+
+---
+
 ## 개발
 
 ```bash
 # 컴포넌트 개발 서버
-pnpm storybook
+pnpm storybook            # http://localhost:6006
 
 # 빌드
 pnpm build
@@ -253,11 +294,11 @@ pnpm build
 # 테스트
 pnpm test
 
-# 릴리즈
-pnpm changeset        # 변경 사항 기록
-pnpm changeset version # 버전 bump
-pnpm release           # 빌드 + npm publish
+# 릴리즈 (버전 package.json 직접 수정 후)
+pnpm publish              # npm OTP 입력 필요
 ```
+
+더 자세한 내용은 [CLAUDE.md](./CLAUDE.md) · [TECH.md](./TECH.md) · [PROJECT.md](./PROJECT.md)를 참고하세요.
 
 ---
 
