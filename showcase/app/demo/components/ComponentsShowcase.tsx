@@ -1,11 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button, Text, Divider, Badge, Chip, Spinner, Skeleton, Empty, Amount, Icon,
   Loading, Accordion, SearchField, IconButton, Progress,
 } from "mokona-ui";
 import { Inbox, Search, Star, Heart, Download, RefreshCw, Trash2, Settings, Bell, Plus, Edit, X } from "lucide-react";
+
+function ProgressIndeterminateDemo() {
+  return (
+    <div className="flex flex-col gap-3">
+      <Text variant="caption1" color="muted">indeterminate — 로딩 중 (진행률 미확정)</Text>
+      {(["primary", "positive", "negative", "warning"] as const).map((color) => (
+        <div key={color} className="flex flex-col gap-1">
+          <Text variant="caption1" color="muted">{color}</Text>
+          <Progress indeterminate color={color} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ProgressAnimatedDemo() {
+  const [value, setValue] = useState(0);
+  const [running, setRunning] = useState(false);
+
+  useEffect(() => {
+    if (!running) return;
+    if (value >= 100) { setRunning(false); return; }
+    const t = setTimeout(() => setValue((v) => Math.min(100, v + 2)), 40);
+    return () => clearTimeout(t);
+  }, [running, value]);
+
+  function restart() {
+    setValue(0);
+    setRunning(true);
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      <Text variant="caption1" color="muted">animated — 0 → 100 채워지는 시연</Text>
+      <Progress value={value} showLabel color="primary" />
+      <div>
+        <Button size="sm" variant="outline" onClick={restart} disabled={running}>
+          {running ? "진행 중..." : value >= 100 ? "다시 실행" : "시작"}
+        </Button>
+      </div>
+    </div>
+  );
+}
 
 const buttonVariants = ["primary", "secondary", "outline", "ghost", "danger"] as const;
 const buttonSizes = ["sm", "md", "lg"] as const;
@@ -375,6 +418,8 @@ export function ComponentsShowcase() {
             </div>
           ))}
         </div>
+        <ProgressIndeterminateDemo />
+        <ProgressAnimatedDemo />
       </Section>
 
       {/* Spinner */}
