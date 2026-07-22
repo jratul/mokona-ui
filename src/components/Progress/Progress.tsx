@@ -8,6 +8,7 @@ export interface ProgressProps
   size?: "sm" | "md" | "lg";
   color?: "primary" | "positive" | "negative" | "warning";
   showLabel?: boolean;
+  indeterminate?: boolean;
 }
 
 const sizeMap = { sm: "h-1", md: "h-2", lg: "h-3" };
@@ -21,9 +22,9 @@ const colorMap = {
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   ProgressProps
->(({ className, value = 0, size = "md", color = "primary", showLabel = false, ...props }, ref) => (
+>(({ className, value = 0, size = "md", color = "primary", showLabel = false, indeterminate = false, ...props }, ref) => (
   <div className="w-full flex flex-col gap-1.5">
-    {showLabel && (
+    {showLabel && !indeterminate && (
       <div className="flex justify-between text-[12px] text-[var(--color-muted-foreground)]">
         <span>진행률</span>
         <span>{Math.round(value)}%</span>
@@ -36,15 +37,18 @@ const Progress = React.forwardRef<
         sizeMap[size],
         className
       )}
-      value={value}
+      value={indeterminate ? undefined : value}
       {...props}
     >
       <ProgressPrimitive.Indicator
         className={cn(
-          "h-full transition-all duration-500 ease-out rounded-full",
-          colorMap[color]
+          "h-full rounded-full",
+          colorMap[color],
+          indeterminate
+            ? "w-1/3 animate-progress-indeterminate"
+            : "transition-all duration-500 ease-out"
         )}
-        style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
+        style={indeterminate ? undefined : { width: `${Math.min(100, Math.max(0, value))}%` }}
       />
     </ProgressPrimitive.Root>
   </div>

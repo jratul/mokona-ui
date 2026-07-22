@@ -34,3 +34,15 @@ export const AllSizes: Story = {
     </div>
   ),
 };
+
+export const Indeterminate: Story = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 400 }}>
+      <Progress indeterminate size="sm" />
+      <Progress indeterminate size="md" />
+      <Progress indeterminate size="lg" />
+      <Progress indeterminate color="positive" />
+      <Progress indeterminate color="negative" />
+    </div>
+  ),
+};
