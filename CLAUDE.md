@@ -56,6 +56,17 @@ React UI 컴포넌트 라이브러리 (npm 패키지 `mokona-ui`). pnpm 모노 �
 `Card`/`Chip`은 래퍼 없이 보이는 요소 자체에 직접 transform이 걸려 있어 이 버그 패턴과 무관.
 새로 애니메이션 래퍼를 씌우는 컴포넌트를 만들 때 동일한 패턴 적용 필요.
 
+## showcase (Next.js 데모 앱)
+
+`showcase/` 폴더에 mokona-ui 컴포넌트를 시연하는 Next.js 앱이 포함되어 있다.
+예전에는 별도 레포(`mokona-ui-showcase`)였으나, 관리 편의를 위해 이 레포로 통합했다.
+
+- 로컬 개발: `cd showcase && pnpm dev`
+- Vercel 배포: mokona-ui 레포 연결 후 **Root Directory = `showcase`** 설정
+- showcase의 `package.json`에 `"mokona-ui": "^x.x.x"`로 npm 버전을 명시하므로,
+  새 버전 배포 후 `showcase/package.json`의 버전을 올리고 커밋하면 Vercel에 자동 반영된다.
+- `update-consumers.ps1` 대상에서 제외됨 — 이 레포 안에서 직접 관리한다.
+
 ## consumer 레포 일괄 업데이트
 
 **트리거**: 사용자가 "consumer 업데이트", "사용처 업데이트", "쓰는 레포 업데이트" 등을 언급할 때.

@@ -2,10 +2,10 @@
   mokona-ui를 쓰는 로컬 레포들을 한 번에 최신 버전으로 업데이트한다.
   새 앱이 생기면 $repos 배열에 폴더명만 추가하면 됨.
   package.json/lockfile만 갱신하고 커밋/푸시는 하지 않음 — 직접 diff 확인 후 커밋할 것.
+  showcase/는 이 레포 안에 포함되어 있으므로 별도로 관리한다.
 #>
 
 $repos = @(
-    "mokona-ui-showcase",
     "family-graph",
     "file-sweeper",
     "mokiru",

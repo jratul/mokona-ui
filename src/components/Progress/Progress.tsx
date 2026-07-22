@@ -40,16 +40,27 @@ const Progress = React.forwardRef<
       value={indeterminate ? undefined : value}
       {...props}
     >
-      <ProgressPrimitive.Indicator
-        className={cn(
-          "h-full rounded-full",
-          colorMap[color],
-          indeterminate
-            ? "w-1/3 animate-progress-indeterminate"
-            : "transition-all duration-500 ease-out"
-        )}
-        style={indeterminate ? undefined : { width: `${Math.min(100, Math.max(0, value))}%` }}
-      />
+      {indeterminate ? (
+        <div
+          className={cn("absolute inset-0 rounded-full", colorMap[color])}
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              -45deg,
+              rgba(255,255,255,0) 0px,
+              rgba(255,255,255,0) 10px,
+              rgba(255,255,255,0.25) 10px,
+              rgba(255,255,255,0.25) 20px
+            )`,
+            backgroundSize: "28px 28px",
+            animation: "progress-stripe 0.5s linear infinite",
+          }}
+        />
+      ) : (
+        <ProgressPrimitive.Indicator
+          className={cn("h-full rounded-full transition-all duration-500 ease-out", colorMap[color])}
+          style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
+        />
+      )}
     </ProgressPrimitive.Root>
   </div>
 ));

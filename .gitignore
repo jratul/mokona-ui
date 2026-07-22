@@ -5,3 +5,8 @@ dist
 storybook-static
 coverage
 *.tgz
+
+# showcase (Next.js)
+showcase/.next/
+showcase/node_modules/
+showcase/.vercel/

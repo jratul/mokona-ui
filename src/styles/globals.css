@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes progress-stripe {
+  to { background-position: 28px 0; }
+}
+
 @layer base {
   :root {
     /* Primary — Toss Blue */
