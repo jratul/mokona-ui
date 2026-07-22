@@ -56,6 +56,21 @@ React UI 컴포넌트 라이브러리 (npm 패키지 `mokona-ui`). pnpm 모노 �
 `Card`/`Chip`은 래퍼 없이 보이는 요소 자체에 직접 transform이 걸려 있어 이 버그 패턴과 무관.
 새로 애니메이션 래퍼를 씌우는 컴포넌트를 만들 때 동일한 패턴 적용 필요.
 
+## consumer 레포 일괄 업데이트
+
+**트리거**: 사용자가 "consumer 업데이트", "사용처 업데이트", "쓰는 레포 업데이트" 등을 언급할 때.
+
+`update-consumers.ps1`을 실행하면 `$repos` 배열에 등록된 모든 레포의 `mokona-ui`를 최신 버전으로 올린다.
+스크립트는 package.json/lockfile만 갱신하고 커밋/푸시는 하지 않으므로, 실행 후 변경된 레포만 골라
+build/lint 확인 후 커밋/푸시한다.
+
+```powershell
+# mokona-ui 프로젝트 루트에서 실행
+powershell -File .\update-consumers.ps1
+```
+
+새 consumer 앱이 생기면 스크립트 상단 `$repos` 배열에 폴더명만 추가하면 된다.
+
 ## 작업 시 체크리스트
 
 - 컴포넌트 수정/추가 후: `pnpm lint` (tsc) + `pnpm test` 통과 확인. `dist/`는 git 추적 대상이 아니므로 커밋에 포함시키지 않는다.
