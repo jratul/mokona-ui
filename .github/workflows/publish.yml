@@ -1,0 +1,47 @@
+name: Publish to npm
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
+
+      - name: Check if version is already published
+        id: version-check
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm show mokona-ui@$VERSION version 2>/dev/null | grep -q "$VERSION"; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "Version $VERSION already published, skipping."
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "Version $VERSION is new, will publish."
+          fi
+
+      - name: Install dependencies
+        if: steps.version-check.outputs.skip == 'false'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        if: steps.version-check.outputs.skip == 'false'
+        run: pnpm build
+
+      - name: Publish
+        if: steps.version-check.outputs.skip == 'false'
+        run: pnpm publish --no-git-checks --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

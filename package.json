@@ -264,6 +264,7 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "lint": "tsc --noEmit",
+    "prepublishOnly": "pnpm build",
     "release": "pnpm build && changeset publish"
   },
   "peerDependencies": {
