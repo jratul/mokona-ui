@@ -9,13 +9,10 @@ import { Inbox, Search, Star, Heart, Download, RefreshCw, Trash2, Settings, Bell
 
 function ProgressIndeterminateDemo() {
   return (
-    <div className="flex flex-col gap-3">
-      <Text variant="caption1" color="muted">indeterminate — 로딩 중 (진행률 미확정)</Text>
+    <div className="flex flex-col gap-2">
+      <Text variant="caption1" color="muted">indeterminate — 진행률 미확정 (트랙 전체 줄무늬)</Text>
       {(["primary", "positive", "negative", "warning"] as const).map((color) => (
-        <div key={color} className="flex flex-col gap-1">
-          <Text variant="caption1" color="muted">{color}</Text>
-          <Progress indeterminate color={color} />
-        </div>
+        <Progress key={color} indeterminate color={color} />
       ))}
     </div>
   );
@@ -42,6 +39,24 @@ function ProgressAnimatedDemo() {
           <Text variant="caption1" color="muted">{color}</Text>
           <Progress value={value} showLabel color={color} />
         </div>
+      ))}
+    </div>
+  );
+}
+
+function ProgressAnimatedWithStripeDemo() {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    const t = setTimeout(() => setValue((v) => (v >= 100 ? 0 : v + 1)), 30);
+    return () => clearTimeout(t);
+  }, [value]);
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Text variant="caption1" color="muted">animated — 진행률을 알 때도 줄무늬 효과</Text>
+      {(["primary", "positive", "negative", "warning"] as const).map((color) => (
+        <Progress key={color} value={value} animated color={color} />
       ))}
     </div>
   );
@@ -417,6 +432,7 @@ export function ComponentsShowcase() {
         </div>
         <ProgressIndeterminateDemo />
         <ProgressAnimatedDemo />
+        <ProgressAnimatedWithStripeDemo />
       </Section>
 
       {/* Spinner */}
