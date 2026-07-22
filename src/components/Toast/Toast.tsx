@@ -5,7 +5,7 @@ import { cn } from "../../utils/cn";
 
 const toastVariants = cva(
   [
-    "flex items-center gap-3 w-full max-w-sm px-4 py-3.5 rounded-2xl shadow-lg",
+    "flex items-center gap-3 w-fit max-w-full px-4 py-3.5 rounded-2xl shadow-lg",
     "text-[14px] font-medium",
     "data-[state=open]:animate-toast-in",
     "data-[state=closed]:animate-toast-out",
@@ -42,7 +42,7 @@ const ToastViewport = React.forwardRef<
     ref={ref}
     className={cn(
       "fixed bottom-0 left-1/2 -translate-x-1/2 z-[100]",
-      "flex flex-col gap-2 p-5 w-full max-w-sm",
+      "flex flex-col items-center gap-2 p-5 w-full",
       className
     )}
     {...props}
@@ -60,9 +60,9 @@ const Toast = React.forwardRef<
     {...props}
   >
     <div className="flex-1 min-w-0">
-      <ToastPrimitive.Title className="leading-snug">{children}</ToastPrimitive.Title>
+      <ToastPrimitive.Title className="leading-snug select-text">{children}</ToastPrimitive.Title>
       {description && (
-        <ToastPrimitive.Description className="text-[12px] opacity-80 mt-0.5">
+        <ToastPrimitive.Description className="text-[12px] opacity-80 mt-0.5 select-text">
           {description}
         </ToastPrimitive.Description>
       )}
