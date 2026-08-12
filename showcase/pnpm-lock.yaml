@@ -15,8 +15,8 @@ importers:
         specifier: ^1.7.0
         version: 1.7.0(react@19.2.4)
       mokona-ui:
-        specifier: ^0.0.11
-        version: 0.0.11(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: ^0.0.13
+        version: 0.0.13(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       next:
         specifier: 16.2.1
         version: 16.2.1(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -2125,8 +2125,8 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  mokona-ui@0.0.11:
-    resolution: {integrity: sha512-xo3/PF5cuhohgOU56vfKEKQAaeEKLuSJvi3j007zeHOHduIJUOFfiv5QzFRu7L8rY8fOlkewNGJnsAn4aMs9Dg==}
+  mokona-ui@0.0.13:
+    resolution: {integrity: sha512-VWz0t7fAygelYP6iRj3IfZmJ2ek+RYG4fTfZc27mJJzLWwhJz85HrZmm5ZCwk6kcyudljCBCUTdt0MQBHscyDQ==}
     peerDependencies:
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
@@ -4787,7 +4787,7 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  mokona-ui@0.0.11(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  mokona-ui@0.0.13(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@radix-ui/react-accordion': 1.2.12(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@radix-ui/react-avatar': 1.1.11(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
