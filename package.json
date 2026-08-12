@@ -1,6 +1,6 @@
 {
   "name": "mokona-ui",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "React UI component library",
   "author": "jratul",
   "license": "MIT",
@@ -256,7 +256,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup && tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css --minify",
+    "build": "tsup && tailwindcss -i ./src/styles/globals.css -o ./dist/styles.css --minify && node -e \"const{cpSync}=require('fs');cpSync('src/fonts','dist/fonts',{recursive:true})\"",
     "dev": "tsup --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
