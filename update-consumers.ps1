@@ -8,6 +8,7 @@
 $repos = @(
     "family-graph",
     "file-sweeper",
+    "gramio",
     "mokiru",
     "photo-cull",
     "qwen-batch-processor",
